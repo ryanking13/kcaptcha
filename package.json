@@ -12,7 +12,8 @@
     "@tensorflow/tfjs": "^2.3.0",
     "dropzone": "^5.7.2",
     "nuxt": "^2.14.0",
-    "nuxt-buefy": "^0.3.31"
+    "nuxt-buefy": "^0.3.31",
+    "nuxt-dropzone": "^1.0.4"
   },
   "devDependencies": {}
 }

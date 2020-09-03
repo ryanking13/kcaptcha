@@ -1,26 +1,34 @@
 <template>
-  <section class="section">
-    <div class="columns is-mobile">
-      <card
-        title="Free"
-        icon="github"
-      >
-        Open source on <a href="https://github.com/buefy/buefy">
-          GitHub
-        </a>
-      </card>
-    </div>
+  <section class="container">
+    <no-ssr>
+      <paste-handler />
+    </no-ssr>
+    <dropzone />
   </section>
 </template>
 
+<style scoped>
+.container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+</style>
+
 <script>
-import Card from '~/components/Card'
+import Card from "~/components/Card";
+import Dropzone from "~/components/Dropzone";
+import PasteHandler from "~/components/PasteHandler";
 
 export default {
-  name: 'HomePage',
+  name: "HomePage",
 
   components: {
-    Card
-  }
-}
+    Card,
+    Dropzone,
+    PasteHandler,
+  },
+};
 </script>
