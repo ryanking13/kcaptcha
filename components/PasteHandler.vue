@@ -9,6 +9,7 @@ export default {
     document.onpaste = this.pasteImage;
     // window.addEventListener("paste", this.pasteImage);
   },
+  props: ["onPaste"],
   methods: {
     // https://stackoverflow.com/questions/6333814/how-does-the-paste-image-from-clipboard-functionality-work-in-gmail-and-google-c
     pasteImage: function (event) {
@@ -25,8 +26,9 @@ export default {
       // load image if there is a pasted image
       if (blob !== null) {
         var reader = new FileReader();
-        reader.onload = function (event) {
-          console.log(event.target.result); // data url!
+        reader.onload = (event) => {
+          // console.log(event.target.result); // data url!
+          this.onPaste(event.target.result);
         };
         reader.readAsDataURL(blob);
       }
