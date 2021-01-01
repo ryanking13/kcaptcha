@@ -1,5 +1,7 @@
 <template>
-  <dropzone id="dropzone" ref="el" :options="options" @vdropzone-file-added="onAdd"></dropzone>
+  <dropzone id="dropzone" ref="el" :options="options" @vdropzone-file-added="onAdd" :useCustomSlot=true>
+    <h3 class="dropzone-custom-title">Drag and Drop <br/>or<br/> Copy and Paste <br/><br/> KCAPTCHA Image!</h3>
+  </dropzone>
 </template>
 
 <style>
@@ -17,7 +19,7 @@ body {
 .dropzone {
   background: white;
   border-radius: 5px;
-  border: 2px dashed rgb(0, 135, 247);
+  border: 2px dashed #b71c1c;
   border-image: none;
   max-width: 500px;
   margin-left: auto;

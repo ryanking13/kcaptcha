@@ -1,5 +1,7 @@
 # kcaptcha
 
+[gnuboard](https://github.com/gnuboard/gnuboard5/tree/master/plugin/kcaptcha) [Kcaptcha](http://www.captcha.ru/en/kcaptcha/) solver
+
 ## Build Setup
 
 ```bash

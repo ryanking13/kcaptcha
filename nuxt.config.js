@@ -50,8 +50,8 @@ export default {
   ** Nuxt.js modules
   */
   modules: [
-    // Doc: https://buefy.github.io/#/documentation
-    'nuxt-buefy',
+    'semantic-ui-vue/nuxt', // includes styles from semantic-ui-css
+    ['semantic-ui-vue/nuxt', { css: false }], // if you have your own semantic-ui styles
   ],
   /*
   ** Build configuration
