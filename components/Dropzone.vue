@@ -1,6 +1,17 @@
 <template>
-  <dropzone id="dropzone" ref="el" :options="options" @vdropzone-file-added="onAdd" :useCustomSlot=true>
-    <h3 class="dropzone-custom-title">Drag and Drop <br/>or<br/> Copy and Paste <br/><br/> KCAPTCHA Image!</h3>
+  <dropzone
+    id="dropzone"
+    ref="el"
+    :options="dropzoneOptions"
+    @vdropzone-file-added="onAdd"
+    :useCustomSlot="true"
+    :include-styling="true"
+  >
+    <h3 class="dropzone-custom-title">
+      Drag and Drop <br />or<br />
+      Copy and Paste <br /><br />
+      KCAPTCHA Image!
+    </h3>
   </dropzone>
 </template>
 
@@ -27,6 +38,16 @@ body {
   margin-top: 10px;
   margin-bottom: 10px;
 }
+
+#dropzone .dz-preview {
+  width: 160px;
+  display: none;
+}
+
+#dropzone .dz-message {
+  display: block;
+}
+
 </style>
 
 <script>
@@ -37,15 +58,13 @@ export default {
   components: {
     Dropzone,
   },
-  props: [
-    "onAdd",
-  ],
+  props: ["onAdd"],
   data() {
     return {
       // See https://rowanwins.github.io/vue-dropzone/docs/dist/index.html#/props
-      options: {
+      dropzoneOptions: {
         url: "http://localhost",
-        createImageThumbnails: true,
+        createImageThumbnails: false,
         autoProcessQueue: false,
         thumbnailWidth: null,
         thumbnailHeight: null,

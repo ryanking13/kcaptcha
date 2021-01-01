@@ -8,13 +8,16 @@
         <paste-handler :onPaste="updateCaptchaImage" />
       </client-only>
       <dropzone :onAdd="readCaptchaImage" />
-      <img
-        v-show="captchaSrc"
-        id="captcha"
-        :src="captchaSrc"
-        alt="Uploaded CAPTCHA Image"
-      />
       <!-- <canvas id='canvas2' width="128" height="128" style=""></canvas> -->
+      <div class="captcha-block">
+        <img
+          id="captcha"
+          v-show="captchaSrc"
+          :src="captchaSrc"
+          alt="Uploaded CAPTCHA Image"
+        />
+        <h3 class="captcha-result">{{ captchaVal }}</h3>
+      </div>
     </div>
     <sui-dimmer :active="isLoading === true" inverted>
       <sui-loader content="모델 로딩 중..." />
@@ -51,6 +54,7 @@ export default {
       captchaSrc: "",
       model: null,
       isLoading: false,
+      captchaVal: "",
     };
   },
 
@@ -103,9 +107,9 @@ export default {
 
       // console.log(imgNormalizedBatch)
       const result = this.model.predict(imgBatch);
-      return this.tfDecodePredction(result, 10, 2);
+      this.captchaVal = this.tfDecodePrediction(result, 10, 2);
     },
-    tfDecodePredction: function (tensor, numCharSet) {
+    tfDecodePrediction: function (tensor, numCharSet) {
       // tensor.print();
 
       // slice tensor to each captcha character
@@ -126,7 +130,8 @@ export default {
         array.map((x, i) => [x, i]).reduce((r, a) => (a[0] > r[0] ? a : r))[1];
       const predicted = sliced.map(argMax).join("");
 
-      console.log(predicted);
+      // console.log(predicted);
+      return predicted
     },
   },
   watch: {
@@ -134,7 +139,7 @@ export default {
       // wait until changed captchaSrc is applied to img
       setTimeout(() => {
         this.tfPredictCaptcha();
-      }, 50);
+      }, 100);
     },
   },
 };
@@ -165,5 +170,19 @@ export default {
   color: #526488;
   word-spacing: 5px;
   padding-bottom: 15px;
+}
+
+.captcha-block {
+  min-height: 10vh;
+}
+
+#captcha {
+  margin-top: 20px;
+}
+
+.captcha-result {
+  font-weight: 400;
+  font-size: 32px;
+  color: #b71c1c
 }
 </style>
