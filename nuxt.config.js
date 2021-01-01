@@ -61,5 +61,8 @@ export default {
   },
   generate: {
     dir: 'docs'
+  },
+  router: {
+    base: '/kcaptcha/'
   }
 }
