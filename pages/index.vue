@@ -2,11 +2,20 @@
   <section class="container">
     <div>
       <github-ribbon />
-      <h1 class="title">KCAPTCHA solver</h1>
-      <h5 class="subtitle">그누보드 KCAPTCHA 분류기</h5>
+      <h1 class="title">KCAPTCHA Solver</h1>
+      <h5 class="subtitle">It is purely running in your browser!</h5>
       <client-only>
         <paste-handler :onPaste="updateCaptchaImage" />
       </client-only>
+      <div>
+        <sui-button
+          id="how-to-use-button"
+          icon="question circle"
+          color="red"
+          @click="() => changeTutorialModalState(true)"
+          >How to Use</sui-button
+        >
+      </div>
       <dropzone :onAdd="readCaptchaImage" />
       <!-- <canvas id='canvas2' width="128" height="128" style=""></canvas> -->
       <div class="captcha-block">
@@ -17,6 +26,12 @@
           alt="Uploaded CAPTCHA Image"
         />
         <h3 class="captcha-result">{{ captchaVal }}</h3>
+      </div>
+      <div>
+        <tutorial-modal
+          v-if="tutorialModalOpen"
+          :changeModalState="changeTutorialModalState"
+        />
       </div>
     </div>
     <sui-dimmer :active="isLoading === true" inverted>
@@ -29,6 +44,7 @@
 import Dropzone from "~/components/Dropzone";
 import PasteHandler from "~/components/PasteHandler";
 import GithubRibbon from "~/components/GithubRibbon";
+import TutorialModal from "~/components/TutorialModal";
 import * as tf from "@tensorflow/tfjs";
 
 export default {
@@ -55,6 +71,7 @@ export default {
       model: null,
       isLoading: false,
       captchaVal: "",
+      tutorialModalOpen: false,
     };
   },
 
@@ -62,6 +79,7 @@ export default {
     Dropzone,
     PasteHandler,
     GithubRibbon,
+    TutorialModal,
   },
 
   methods: {
@@ -71,6 +89,9 @@ export default {
       } else {
         this.isLoading = false;
       }
+    },
+    changeTutorialModalState: function (val) {
+      this.tutorialModalOpen = val;
     },
     updateCaptchaImage: function (src) {
       this.captchaSrc = src;
@@ -131,7 +152,7 @@ export default {
       const predicted = sliced.map(argMax).join("");
 
       // console.log(predicted);
-      return predicted
+      return predicted;
     },
   },
   watch: {
@@ -183,6 +204,10 @@ export default {
 .captcha-result {
   font-weight: 400;
   font-size: 32px;
-  color: #b71c1c
+  color: #b71c1c;
+}
+
+#how-to-use-button {
+  margin-bottom: 20px;
 }
 </style>

@@ -8,7 +8,7 @@
     :include-styling="true"
   >
     <h3 class="dropzone-custom-title">
-      Drag and Drop <br />or<br />
+      Upload <br />or<br />
       Copy and Paste <br /><br />
       KCAPTCHA Image!
     </h3>
