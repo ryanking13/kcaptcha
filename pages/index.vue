@@ -3,7 +3,7 @@
     <div>
       <github-ribbon />
       <h1 class="title">KCAPTCHA Solver</h1>
-      <h5 class="subtitle">It is purely running in your browser!</h5>
+      <h5 class="subtitle">It is running purely in your browser!</h5>
       <client-only>
         <paste-handler :onPaste="updateCaptchaImage" />
       </client-only>

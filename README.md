@@ -1,6 +1,6 @@
 # kcaptcha
 
-[gnuboard](https://github.com/gnuboard/gnuboard5/tree/master/plugin/kcaptcha) [Kcaptcha](http://www.captcha.ru/en/kcaptcha/) solver
+[Kcaptcha](http://www.captcha.ru/en/kcaptcha/) 분류기
 
 ## Build Setup
 
